@@ -5,7 +5,8 @@ from pathlib import Path
 def main():
     """Copy entry.png to the output directory."""
     output_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "out")
-    src = Path("entry.png")
+    base = os.environ.get("MAKEFUN_BOT_DIR") or str(Path(__file__).resolve().parent)
+    src = Path(base) / "entry.png"
     dst = Path(output_dir) / "entry.png"
     dst.parent.mkdir(parents=True, exist_ok=True)
     CHUNK = 65536  # 64 KiB
